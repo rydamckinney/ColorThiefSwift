@@ -16,8 +16,12 @@
 //  http://lokeshdhakar.com/projects/color-thief/
 //  Sven Woltmann - for the fast Java Implementation
 //  https://github.com/SvenWoltmann/color-thief-java
-
+#if canImport(UIKit)
 import UIKit
+#elseif os(macOS)
+import AppKit
+public typealias UIColor = NSColor
+#endif
 
 /// MMCQ (modified median cut quantization) algorithm from
 /// the Leptonica library (http://www.leptonica.com/).

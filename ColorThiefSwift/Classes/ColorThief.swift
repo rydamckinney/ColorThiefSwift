@@ -16,8 +16,22 @@
 //  http://lokeshdhakar.com/projects/color-thief/
 //  Sven Woltmann - for the fast Java Implementation
 //  https://github.com/SvenWoltmann/color-thief-java
-
+#if canImport(UIKit)
 import UIKit
+#elseif os(macOS)
+import AppKit
+public typealias UIImage = NSImage
+extension NSImage {
+    var cgImage: CGImage? {
+        
+        var proposedRect = CGRect(origin: .zero, size: size)
+
+        return cgImage(forProposedRect: &proposedRect,
+                       context: nil,
+                       hints: nil)
+    }
+}
+#endif
 
 public class ColorThief {
 
@@ -155,3 +169,4 @@ public class ColorThief {
     }
 
 }
+
